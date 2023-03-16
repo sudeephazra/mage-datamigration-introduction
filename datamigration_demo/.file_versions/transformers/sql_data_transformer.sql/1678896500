@@ -1,0 +1,2 @@
+-- Docs: https://docs.mage.ai/guides/sql-blocks
+SELECT blogs.userId, id, title FROM {{ df_2 }} blogs inner join {{ df_1 }} userdetls on  userdetls.id = blogs.userId

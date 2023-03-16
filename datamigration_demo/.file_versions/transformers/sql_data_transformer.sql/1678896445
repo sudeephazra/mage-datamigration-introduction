@@ -1,0 +1,2 @@
+-- Docs: https://docs.mage.ai/guides/sql-blocks
+SELECT userId, id, title, body FROM {{ df_2 }} blogs inner join {{ df_1 }} userda 

@@ -1,0 +1,5 @@
+-- Docs: https://docs.mage.ai/guides/sql-blocks
+select user_data.id, user_data.title
+from {{df_1}} as user_data
+inner join {{df_2}} as user_details
+on user_data.userId = user_details.id

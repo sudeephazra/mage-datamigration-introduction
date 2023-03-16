@@ -1,0 +1,111 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - combine_data
+  - sql_combine_data
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: user_data
+  status: executed
+  type: data_loader
+  upstream_blocks: []
+  uuid: user_data
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - combine_data
+  - sql_combine_data
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: user_details
+  status: executed
+  type: data_loader
+  upstream_blocks: []
+  uuid: user_details
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - table_for_combine_data_1678940930603
+  - aws_file_export
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: combine_data
+  status: executed
+  type: transformer
+  upstream_blocks:
+  - user_details
+  - user_data
+  uuid: combine_data
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    data_provider: mysql
+    data_provider_profile: default
+    data_provider_schema: public
+    data_provider_table: combin
+    export_write_policy: replace
+    use_raw_sql: false
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: sql
+  name: sql_combine_data
+  status: executed
+  type: transformer
+  upstream_blocks:
+  - user_data
+  - user_details
+  uuid: sql_combine_data
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    data_provider: postgres
+    data_provider_profile: default
+    data_provider_schema: public
+    export_write_policy: append
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: aws_file_export
+  status: executed
+  type: data_exporter
+  upstream_blocks:
+  - combine_data
+  uuid: aws_file_export
+data_integration: null
+extensions: {}
+name: datamigration
+type: python
+uuid: datamigration
+widgets:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    chart_type: table
+    limit: 10
+    x: x
+    y: y
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: table for combine_data 1678940930603
+  status: executed
+  type: chart
+  upstream_blocks:
+  - combine_data
+  uuid: table_for_combine_data_1678940930603
